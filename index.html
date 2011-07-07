@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Brickout</title>
+        
+        <link href="brickout.css" rel="stylesheet" type="text/css"/>
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript" src="brickout.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready( function () {
+                $('div#container').css('width', $(window).width());
+                $('div#container').css('height', $(window).height());
+                
+                BRICKOUT.startPlaying();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="info-center">
+            <div id="score">Score: 0</div>
+        </div>    
+        <div id="container">
+            <div id="ball"></div>
+            <div id="paddle"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+div#container {
+    width: 1000px;
+    height: 600px;
+    background-color: blue;
+    overflow: hidden;
+}
+
+div#ball {
+    width: 16px;
+    height: 16px;
+    background-color: red;
+    position: absolute;
+    top: 400px;
+    left: 225px;
+    border-radius: 50px;
+}
+
+div#paddle {
+    width: 60px;
+    height: 16px;
+    background-color: purple;
+    position: absolute;
+    top: 550px;
+    left: 225px;
+}
+
+div.brick {
+    width: 75px;
+    height: 40px;
+    float: left;
+    position: relative;
+}
+
+div#info-center {
+    height: 30px;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+    color: white;
+}
+
+div#info-center > div#score {
+    float: right;
+    margin-right: 20px;
+}
