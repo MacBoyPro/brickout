@@ -10,6 +10,7 @@ BRICKOUT.ballCenter = {};
 
 BRICKOUT.paddle = null;
 BRICKOUT.paddleCenter = {};
+BRICKOUT.paddleStep = 10;
 
 BRICKOUT.bricks = [];
 BRICKOUT.brickTypes = [];
@@ -17,6 +18,7 @@ BRICKOUT.brickWidth = 10;
 BRICKOUT.brickHeight = 5;
 
 BRICKOUT.score = 0;
+BRICKOUT.movementTracker = 0;
 
 BRICKOUT.startPlaying = function() {
     BRICKOUT.ball = $('div#ball');
@@ -38,18 +40,29 @@ BRICKOUT.startPlaying = function() {
     
     BRICKOUT.paddleCenter = { 'x': BRICKOUT.paddle.width()/2 + paddleCurrentX,
                               'y': BRICKOUT.paddle.height()/2 + paddleCurrentY };                        
-    
-    
-    $(document).bind("keypress", function(e){
+        
+    $(document).keydown( function(e){
         switch(e.keyCode) {
                 case 37: // left
-                        BRICKOUT.movePaddle(-10);
+                        BRICKOUT.movementTracker = -1;
                         break;
                 case 39: // right
-                        BRICKOUT.movePaddle(10);
+                        BRICKOUT.movementTracker = 1;
                         break;
         };
+    });
     
+    $(document).keyup( function(e){
+        switch(e.keyCode) {
+                case 37: // left
+                        if (BRICKOUT.movementTracker == -1) 
+                            BRICKOUT.movementTracker = 0; 
+                        break;
+                case 39: // right
+                        if (BRICKOUT.movementTracker == 1)
+                            BRICKOUT.movementTracker = 0; 
+                        break;
+        }
     });
     
     // choose whether the ball moves left or right to start with
@@ -153,6 +166,10 @@ BRICKOUT.intersect = function(elementOne,elementTwo) {
 
 BRICKOUT.gameLogic = function() {
 
+    if(BRICKOUT.movementTracker != 0) 
+        BRICKOUT.movePaddle(BRICKOUT.movementTracker * BRICKOUT.paddleStep);
+    
+    
     var currentOffset = BRICKOUT.ball.offset();
     var currentX = currentOffset.left;
     var currentY = currentOffset.top;
