@@ -166,7 +166,11 @@ BRICKOUT.intersect = function(elementOne,elementTwo) {
 
 BRICKOUT.gameLogic = function() {
 
-    if(BRICKOUT.movementTracker != 0) 
+    var containerAtLeftBorder = BRICKOUT.paddleCenter['x'] - 32 <= 0;
+    var containerAtRightBorder = BRICKOUT.paddleCenter['x'] + 32 >= $("div#container").width();
+
+    if((BRICKOUT.movementTracker == -1 && containerAtLeftBorder != true) || 
+      (BRICKOUT.movementTracker == 1 && containerAtRightBorder != true))
         BRICKOUT.movePaddle(BRICKOUT.movementTracker * BRICKOUT.paddleStep);
     
     
